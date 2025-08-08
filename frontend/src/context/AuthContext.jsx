@@ -1,110 +1,4 @@
 
-
-
-// import React, { createContext, useState, useContext } from 'react';
-// import { loginUser } from '../api/api'; // make sure this API function is correct
-
-// const AuthContext = createContext();
-
-// export const AuthProvider = ({ children }) => {
-//   const [token, setToken] = useState(localStorage.getItem('token') || null);
-//   const [user, setUser] = useState(JSON.parse(localStorage.getItem('user')) || null);
-
-//   // Login using backend API
-//   const login = async (userId, password) => {
-//     try {
-//       const res = await loginUser(userId, password); // API call to /auth/login
-//       const { token, user } = res.data;
-
-//       // Save token & user to state and localStorage
-//       setToken(token);
-//       setUser(user);
-//       localStorage.setItem('token', token);
-//       localStorage.setItem('user', JSON.stringify(user));
-//       return true;
-//     } catch (err) {
-//       console.error('Login failed:', err);
-//       return false;
-//     }
-//   };
-
-//   const logout = () => {
-//     setToken(null);
-//     setUser(null);
-//     localStorage.removeItem('token');
-//     localStorage.removeItem('user');
-//     window.location.href = '/'; 
-//   };
-
-//   return (
-//     <AuthContext.Provider value={{ token, user, setUser, login, logout }}>
-//       {children}
-//     </AuthContext.Provider>
-//   );
-// };
-
-// export const useAuth = () => useContext(AuthContext);
-
-
-// import React, { createContext, useEffect, useState, useContext } from 'react';
-// import { loginUser } from '../api/api';
-
-// const AuthContext = createContext();
-
-// export const AuthProvider = ({ children }) => {
-//   const [token, setToken] = useState(null);
-//   const [user, setUser] = useState(null);
-//   const [authLoading, setAuthLoading] = useState(true); // NEW
-
-//   useEffect(() => {
-//     const storedToken = localStorage.getItem('token');
-//     const storedUser = localStorage.getItem('user');
-//     if (storedToken && storedUser) {
-//       setToken(storedToken);
-//       setUser(JSON.parse(storedUser));
-//     }
-//     setAuthLoading(false); // after loading from localStorage
-//   }, []);
-
-//   const login = async (email, password) => {
-//     try {
-//       const res = await loginUser(email, password);
-//       const { token, user } = res.data;
-//       setToken(token);
-//       setUser(user);
-//       localStorage.setItem('token', token);
-//       localStorage.setItem('user', JSON.stringify(user));
-//       return true;
-//     } catch (err) {
-//       console.error('Login failed:', err);
-//       return false;
-//     }
-//   };
-
-//   const logout = () => {
-//     setToken(null);
-//     setUser(null);
-//     localStorage.removeItem('token');
-//     localStorage.removeItem('user');
-//     window.location.href = '/';
-//   };
-
-//   const updateUser = (newData) => {
-//   const updated = { ...user, ...newData };
-//   setUser(updated);
-//   localStorage.setItem('user', JSON.stringify(updated));
-// };
-
-//   return (
-//    <AuthContext.Provider value={{ token, user, login, logout, setUser, updateUser, authLoading }}>
-//       {children}
-//     </AuthContext.Provider>
-//   );
-// };
-
-// export const useAuth = () => useContext(AuthContext);
-
-
 import React, { createContext, useEffect, useState, useContext } from 'react';
 import { loginUser } from '../api/api';
 
@@ -142,7 +36,7 @@ export const AuthProvider = ({ children }) => {
   if (storedToken && storedUser) {
     const parsedUser = JSON.parse(storedUser);
     if (parsedUser.profileImage && !parsedUser.profileImage.startsWith('http')) {
-      parsedUser.profileImage = `http://localhost:5678${parsedUser.profileImage}`;
+      parsedUser.profileImage = `https://excel-analyzer-ddbp.onrender.com${parsedUser.profileImage}`;
     }
     setToken(storedToken);
     setUser(parsedUser);
@@ -174,7 +68,7 @@ export const AuthProvider = ({ children }) => {
 
     // FIX: Ensure full image URL
     if (user.profileImage && !user.profileImage.startsWith('http')) {
-      user.profileImage = `http://localhost:5678${user.profileImage}`;
+      user.profileImage = `https://excel-analyzer-ddbp.onrender.com${user.profileImage}`;
     }
 
     setToken(token);
@@ -203,7 +97,7 @@ export const AuthProvider = ({ children }) => {
 
   // FIX: full URL on update
   if (updated.profileImage && !updated.profileImage.startsWith('http')) {
-    updated.profileImage = `http://localhost:5678${updated.profileImage}`;
+    updated.profileImage = `https://excel-analyzer-ddbp.onrender.com${updated.profileImage}`;
   }
 
   setUser(updated);
