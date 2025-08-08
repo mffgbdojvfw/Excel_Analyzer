@@ -19,7 +19,7 @@ connectDB();
 
 
 app.use(cors({
-  origin: process.env.CORS_ORIGIN || "*",
+  origin:"https://excel-analyzer-frontend.onrender.com",
   credentials: true
 }));
 
