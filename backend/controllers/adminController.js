@@ -2,7 +2,7 @@
 
 const File = require('../models/File');
 const User = require("../models/User.js")
-const Insight = require("../models/insight");
+const Insight = require("../models/Insight");
 
 
 const fs = require('fs');
