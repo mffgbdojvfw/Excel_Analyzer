@@ -9,7 +9,7 @@ const fixUserImage = (user) => {
   if (user?.profileImage && !user.profileImage.startsWith('http')) {
     return {
       ...user,
-      profileImage: `http://localhost:5678${user.profileImage}`,
+      profileImage: `https://excel-analyzer-ddbp.onrender.com${user.profileImage}`,
     };
   }
   return user;
