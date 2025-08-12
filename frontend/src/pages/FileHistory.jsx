@@ -134,7 +134,7 @@ const FileHistory = () => {
     try {
       const token = localStorage.getItem('token');
       setLoadingId(id);
-      const res = await fetch(`http://localhost:5678/api/uploads/download/${id}`, {
+      const res = await fetch(`http://https://excel-analyzer-ddbp.onrender.com/api/uploads/download/${id}`, {
         method: 'GET',
         headers: { Authorization: `Bearer ${token}` },
       });
