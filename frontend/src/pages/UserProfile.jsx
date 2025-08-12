@@ -134,7 +134,7 @@ const UserProfile = () => {
       const token = localStorage.getItem('token');
       const res = await uploadProfileImage(file, token);
       const updatedUser = res.data.user;
-      const fullImagePath = `http://localhost:5678${updatedUser.profileImage}`;
+      const fullImagePath = `https://excel-analyzer-ddbp.onrender.com${updatedUser.profileImage}`;
 
       updateUser({ ...updatedUser, profileImage: fullImagePath });
       localStorage.setItem('user', JSON.stringify({ ...updatedUser, profileImage: fullImagePath }));
