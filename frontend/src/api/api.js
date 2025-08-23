@@ -54,8 +54,12 @@ export const getParsedDataById = (id, token) =>
 
 // -------------------- INSIGHT --------------------
 
+// export const generateInsight = (id, token) =>
+//   axios.post(`${API_BASE}/insights/${id}`, null, {
+//     headers: { Authorization: `Bearer ${token}` },
+//   });
 export const generateInsight = (id, token) =>
-  axios.post(`${API_BASE}/insights/${id}`, null, {
+  axios.post(`${API_BASE}/api/insights/${id}`, null, {
     headers: { Authorization: `Bearer ${token}` },
   });
 
