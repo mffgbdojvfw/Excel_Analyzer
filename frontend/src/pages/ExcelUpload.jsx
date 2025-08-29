@@ -516,6 +516,8 @@ const ExcelUpload = () => {
   const pdfWidth = pdf.internal.pageSize.getWidth();
   const pdfHeight = pdf.internal.pageSize.getHeight();
 
+  pdf.setFillColor(0, 0, 0);
+  pdf.rect(0, 0, pdfWidth, pdfHeight, 'F');
   // Keep chart aspect ratio
   const imgProps = pdf.getImageProperties(imgData);
   const ratio = imgProps.width / imgProps.height;
