@@ -287,12 +287,12 @@ const FileHistory = () => {
                 </div>
 
                 <div className="flex flex-wrap gap-2 w-full justify-end">
-                  <button
+{/*                   <button
                     onClick={() => navigate(`/insight/${item._id}`)}
                     className="bg-indigo-600 hover:bg-indigo-700 text-white px-3 py-1 rounded flex items-center gap-1 text-sm"
                   >
                     <FileSearch size={16} /> View Insight
-                  </button>
+                  </button> */}
                   <button
                     onClick={() => handleReload(item)}
                     disabled={loadingId === item._id}
