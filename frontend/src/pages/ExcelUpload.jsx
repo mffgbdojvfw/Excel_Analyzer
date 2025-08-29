@@ -489,21 +489,61 @@ const ExcelUpload = () => {
     }
   };
 
-  const downloadAsPDF = async () => {
-    const canvas = await html2canvas(document.getElementById('chart-container'));
-    const imgData = canvas.toDataURL('image/png');
-    const pdf = new jsPDF();
-    pdf.addImage(imgData, 'PNG', 10, 10, 190, 100);
-    pdf.save('chart.pdf');
-  };
+  // const downloadAsPDF = async () => {
+  //   const canvas = await html2canvas(document.getElementById('chart-container'));
+  //   const imgData = canvas.toDataURL('image/png');
+  //   const pdf = new jsPDF();
+  //   pdf.addImage(imgData, 'PNG', 10, 10, 190, 100);
+  //   pdf.save('chart.pdf');
+  // };
 
-  const downloadAsPNG = async () => {
-    const canvas = await html2canvas(document.getElementById('chart-container'));
-    const link = document.createElement('a');
-    link.href = canvas.toDataURL('image/png');
-    link.download = 'chart.png';
-    link.click();
-  };
+  // const downloadAsPNG = async () => {
+  //   const canvas = await html2canvas(document.getElementById('chart-container'));
+  //   const link = document.createElement('a');
+  //   link.href = canvas.toDataURL('image/png');
+  //   link.download = 'chart.png';
+  //   link.click();
+  // };
+
+  const downloadAsPDF = () => {
+  if (!chartRef.current) return;
+
+  // Get Chart.js canvas directly
+  const chartCanvas = chartRef.current.canvas;
+  const imgData = chartCanvas.toDataURL('image/png', 1.0);
+
+  const pdf = new jsPDF('landscape');
+  const pdfWidth = pdf.internal.pageSize.getWidth();
+  const pdfHeight = pdf.internal.pageSize.getHeight();
+
+  // Keep chart aspect ratio
+  const imgProps = pdf.getImageProperties(imgData);
+  const ratio = imgProps.width / imgProps.height;
+  let width = pdfWidth - 20;
+  let height = width / ratio;
+
+  if (height > pdfHeight - 20) {
+    height = pdfHeight - 20;
+    width = height * ratio;
+  }
+
+  pdf.addImage(imgData, 'PNG', 10, 10, width, height);
+  pdf.save('chart.pdf');
+};
+
+
+  
+
+  const downloadAsPNG = () => {
+  if (!chartRef.current) return;
+
+  const chartCanvas = chartRef.current.canvas;
+  const link = document.createElement('a');
+  link.href = chartCanvas.toDataURL('image/png', 1.0); // preserves quality & colors
+  link.download = 'chart.png';
+  link.click();
+};
+
 
   const downloadAsExcel = () => {
     if (!uploadedFile?.base64) return;
