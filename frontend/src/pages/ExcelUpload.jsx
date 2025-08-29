@@ -603,9 +603,9 @@ const ExcelUpload = () => {
                     <p className="text-sm text-slate-400">Uploaded on: {new Date(file.uploadedAt).toLocaleString()}</p>
                   </div>
                   <div className="flex gap-2 mt-3 md:mt-0">
-                    <button onClick={() => navigate(`/insight/${file._id}`)} className="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-md text-sm shadow inline-flex items-center gap-2">
+{/*                     <button onClick={() => navigate(`/insight/${file._id}`)} className="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-md text-sm shadow inline-flex items-center gap-2">
                       <FileSearch className="w-4 h-4" /> View Insight
-                    </button>
+                    </button> */}
                     <button onClick={() => handleReload(file._id)} className="bg-emerald-600 hover:bg-emerald-700 text-white px-4 py-2 rounded-md text-sm shadow inline-flex items-center gap-2">
                       <RotateCcw className="w-4 h-4" /> Reload
                     </button>
